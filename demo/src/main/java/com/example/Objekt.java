@@ -3,20 +3,24 @@ package com.example;
 public abstract class Objekt  {
     protected int id;
     protected String typ;
-    protected boolean tillgänglig;
-    protected String titel;
+    protected boolean isAvailable;
+    protected String title;
 
+    public Objekt()
+    {
+        // behövs för gson
+    }
 
-    public Objekt(int id, String typ, boolean tillgänglig, String titel) {
+    public Objekt(int id, String typ, boolean tillgänglig, String title) {
         this.id = id;
         this.typ = typ;
-        this.tillgänglig = tillgänglig;
-        this.titel = titel;
+        this.isAvailable = tillgänglig;
+        this.title = title;
     }
     public boolean isTillgänglig() {
-        return tillgänglig;
+        return isAvailable;
     }
     public void setTillgänglig(boolean tillgänglig) {
-        this.tillgänglig = tillgänglig;
+        this.isAvailable = tillgänglig;
     }
 }
