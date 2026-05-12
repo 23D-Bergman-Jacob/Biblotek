@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
-        Test();
+        System.out.println(Test());
         String baseURL = "http://10.151.168.5:3110/"; 
         HttpResponse<String>hämtadBok;
 
@@ -28,10 +28,12 @@ public class Main {
                 hämtadBok = Unirest.get(baseURL+"books/" + k).asString();            
             } catch (UnirestException e) {
                 IO.println("alla böcker hämtade" + e.getLocalizedMessage());
-                break;  
+                return;
             }
-            System.out.println(hämtadBok.getBody());
             Bok exbok = gson.fromJson(hämtadBok.getBody(), Bok.class);
+            if (exbok.getFörfattare() == null){
+                break;
+            }
             böcker.add(exbok);
             System.out.println(böcker.get(k-1));
         }
